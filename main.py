@@ -1,4 +1,4 @@
-import psycopg
+import psycopg2
 import requests
 from datetime import datetime
 
@@ -8,7 +8,7 @@ response = requests.get(url)
 
 
 #establishing the connection
-conn = psycopg.connect(
+conn = psycopg2.connect(
    "postgresql://postgres:EKoXvG1FI2gQe64rpZZg@containers-us-west-27.railway.app:6706/railway"
 )
 cursor = conn.cursor()
