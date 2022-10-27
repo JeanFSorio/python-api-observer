@@ -1,7 +1,8 @@
 from datetime import datetime
 from apiobserver.timedInfityLoop import timedLoop
 
-firstFetch = datetime(2022, 10, 27, 3, 55) #precisa ser gmt0 pra n bugar o sleep em prod
+# precisa ser gmt0 pra n bugar o sleep em prod
+firstFetch = datetime(2022, 10, 27, 4, 10)
 lastFetch = datetime(2022, 10, 27, 15, 55)
 
 allAreaAbbreviation = ['br', 'ac', 'al', 'ap', 'am', 'ba', 'ce', 'df', 'es', 'zz', 'go', 'ma', 'mt', 'ms',
