@@ -7,7 +7,7 @@ import pytz
 
 def timedLoop(fetchTime, areaAbbreviation, pauseTiming, lastFetch, governadorArea):
     sleepTime = (fetchTime-datetime.now()).total_seconds()
-    print(sleepTime)
+    print(sleepTime, datetime.now(), fetchTime, areaAbbreviation, pauseTiming, lastFetch, governadorArea)
     time.sleep(sleepTime)
     timeNow = datetime.now(pytz.timezone('Brazil/East'))
 
