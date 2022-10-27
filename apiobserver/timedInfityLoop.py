@@ -6,7 +6,9 @@ import pytz
 
 
 def timedLoop(fetchTime, areaAbbreviation, pauseTiming, lastFetch, governadorArea):
-    time.sleep((fetchTime-datetime.now()).total_seconds())
+    sleepTime = (fetchTime-datetime.now()).total_seconds()
+    print(sleepTime)
+    time.sleep(sleepTime)
     timeNow = datetime.now(pytz.timezone('Brazil/East'))
 
     getPresidente(areaAbbreviation, timeNow)
