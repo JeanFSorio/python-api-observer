@@ -1,7 +1,7 @@
 
 import psycopg2
 
-def saveMany(response, timeNow):
+def saveMany(response, timeNow, cargo):
     #establishing the connection
 	conn = psycopg2.connect(
 		"postgresql://postgres:EKoXvG1FI2gQe64rpZZg@containers-us-west-27.railway.app:6706/railway")
@@ -10,8 +10,8 @@ def saveMany(response, timeNow):
 		
 		if	verifyDuplicate(conn, res.jsonText):
 			save = conn.cursor()
-			save.execute("INSERT INTO eleicao_log (apuracao, horario, localidade) " +
-						f"VALUES ('{res.jsonText}', '{timeNow}', '{res.uf}');")
+			save.execute("INSERT INTO eleicao_log (apuracao, horario, localidade, cargo) " +
+						f"VALUES ('{res.jsonText}', '{timeNow}', '{res.uf}', '{cargo}');")
 			conn.commit()
 			print(f"Done! - {timeNow} - {res.uf}")
 	conn.close()
@@ -23,4 +23,4 @@ def verifyDuplicate(conn, jsonText=''):
 	query.execute("SELECT * FROM eleicao_log " +
 					f"WHERE apuracao::text = '{jsonText}'")
 	fetch = query.fetchone()
-	return fetch is None
+	return True
