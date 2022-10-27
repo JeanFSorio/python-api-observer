@@ -9,8 +9,8 @@ def timedLoop(fetchTime, areaAbbreviation, pauseTiming, lastFetch, governadorAre
     sleepTime = (fetchTime-datetime.now()).total_seconds()
     print(sleepTime, datetime.now(), fetchTime, areaAbbreviation, pauseTiming, lastFetch, governadorArea)
     time.sleep(sleepTime)
-    timeNow = datetime.now(pytz.timezone('Brazil/East'))
 
+    timeNow = datetime.now(pytz.timezone('Brazil/East'))
     getPresidente(areaAbbreviation, timeNow)
     getGovernador(governadorArea, timeNow)
 
