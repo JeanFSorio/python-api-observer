@@ -1,9 +1,9 @@
 import requests
 
 class jsonResponse: 
-    def __init__(self, uf, json): 
+    def __init__(self, uf, jsonText): 
         self.uf = uf 
-        self.json = json
+        self.jsonText = jsonText
 
 
 def fecthJson(ufs):

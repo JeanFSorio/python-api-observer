@@ -6,7 +6,7 @@ import pytz
 
 
 
-def timedLoop(fetchTime, areaAbbreviation, pauseTiming):
+def timedLoop(fetchTime, areaAbbreviation, pauseTiming,lastFetch):
     #fetch form url
     t = datetime.now()
     time.sleep((fetchTime-t).total_seconds())
@@ -15,6 +15,7 @@ def timedLoop(fetchTime, areaAbbreviation, pauseTiming):
     response = fecthJson(areaAbbreviation)
     saveMany(response, timeNow)
     nextFetch =fetchTime + timedelta(minutes=pauseTiming)
-    timedLoop(nextFetch,areaAbbreviation, pauseTiming)
+    if lastFetch >= t:
+        timedLoop(nextFetch,areaAbbreviation, pauseTiming, lastFetch)
 
  
