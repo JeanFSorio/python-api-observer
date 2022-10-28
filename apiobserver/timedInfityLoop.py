@@ -7,7 +7,7 @@ import pytz
 
 def timedLoop(fetchTime, areaAbbreviation, pauseTiming, lastFetch, governadorArea):
     sleepTime = (fetchTime-datetime.now()).total_seconds()
-    print(sleepTime, datetime.now(), fetchTime)
+    print({"tempo de pausa(m:ss)": f"{int(sleepTime/60)}:{int(sleepTime%60)}", "horaSistema": f"{datetime.now()}", "horaProximaProcura": f"{fetchTime}"})
     if sleepTime > 0:
         time.sleep(sleepTime)
     timeNow = datetime.now(pytz.timezone('Brazil/East'))
@@ -19,7 +19,8 @@ def timedLoop(fetchTime, areaAbbreviation, pauseTiming, lastFetch, governadorAre
     if lastFetch >= datetime.now():
         timedLoop(nextFetch, areaAbbreviation,
                   pauseTiming, lastFetch, governadorArea)
-
+    else:
+        print("Carga de dados terminada")
 
 def getPresidente(areaAbbreviation, timeNow):
     response = fecthJson(areaAbbreviation, 1, 545)

@@ -13,7 +13,9 @@ def saveMany(response, timeNow, cargo):
 			save.execute("INSERT INTO eleicao_log (apuracao, horario, localidade, cargo) " +
 						f"VALUES ('{res.jsonText}', '{timeNow}', '{res.uf}', '{cargo}');")
 			conn.commit()
-			print(f"Done! - {timeNow} - {res.uf}")
+			print(f"Done! - {timeNow} - {res.uf} -  '{cargo}'")
+		else:
+			print(f"Already in db! - {timeNow} - {res.uf} -  '{cargo}'")
 	conn.close()
 
 
@@ -23,4 +25,4 @@ def verifyDuplicate(conn, jsonText=''):
 	query.execute("SELECT * FROM eleicao_log " +
 					f"WHERE apuracao::text = '{jsonText}'")
 	fetch = query.fetchone()
-	return True
+	return fetch is None
