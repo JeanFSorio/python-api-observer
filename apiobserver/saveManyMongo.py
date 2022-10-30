@@ -15,7 +15,7 @@ def get_database():
   
 def saveManyMongo(response):
     dbname = get_database()
-    collection_name = dbname["resultado"]
+    collection_name = dbname["resultados"]
     newResponse = verifyDuplicate(collection_name, response)
     if len(newResponse) > 0:
        collection_name.insert_many(newResponse)
