@@ -4,6 +4,8 @@ from datetime import datetime, timedelta
 import time
 import pytz
 
+from apiobserver.saveManyMongo import saveManyMongo
+
 
 def timedLoop(fetchTime, areaAbbreviation, pauseTiming, lastFetch, governadorArea):
     sleepTime = (fetchTime-datetime.now()).total_seconds()
@@ -24,9 +26,12 @@ def timedLoop(fetchTime, areaAbbreviation, pauseTiming, lastFetch, governadorAre
 
 def getPresidente(areaAbbreviation, timeNow):
     response = fecthJson(areaAbbreviation, 1, 545)
-    saveMany(response, timeNow, 'p')
+    #saveMany(response, timeNow, 'p')
+    saveManyMongo(response)
 
 
 def getGovernador(governadorArea, timeNow):
     response = fecthJson(governadorArea, 3, 547)
-    saveMany(response, timeNow, 'g')
+    #saveMany(response, timeNow, 'g')
+    saveManyMongo(response)
+

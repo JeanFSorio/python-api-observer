@@ -10,7 +10,7 @@ def saveMany(response, timeNow, cargo):
 		
 		if	verifyDuplicate(conn, res.jsonText):
 			save = conn.cursor()
-			save.execute("INSERT INTO eleicao_log (apuracao, horario, localidade, cargo) " +
+			save.execute("INSERT INTO resultados (apuracao, horario, localidade, cargo) " +
 						f"VALUES ('{res.jsonText}', '{timeNow}', '{res.uf}', '{cargo}');")
 			conn.commit()
 			print(f"Done! - {timeNow} - {res.uf} -  '{cargo}'")
@@ -22,7 +22,7 @@ def saveMany(response, timeNow, cargo):
 def verifyDuplicate(conn, jsonText=''):
 	#jsonData = json.load(jsonText)
 	query = conn.cursor()
-	query.execute("SELECT * FROM eleicao_log " +
+	query.execute("SELECT * FROM resultados " +
 					f"WHERE apuracao::text = '{jsonText}'")
 	fetch = query.fetchone()
-	return fetch is None
+	return True #fetch is None
