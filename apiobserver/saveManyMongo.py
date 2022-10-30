@@ -19,6 +19,7 @@ def saveManyMongo(response):
     newResponse = verifyDuplicate(collection_name, response)
     if len(newResponse) > 0:
        collection_name.insert_many(newResponse)
+    print(f'{len(newResponse)} dados adicionados')
 
 def verifyDuplicate(collection, response):
    newResponse = []
